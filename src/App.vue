@@ -14,8 +14,8 @@
   color: #2c3e50;
   margin: 0;
   padding: 0;
+  height:100% ;
   width: 100%;
-  height: 100%;
   background-color: rgb(244, 245, 245);
 }
 
@@ -24,6 +24,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  box-sizing: border-box;
   height: 100%;
   background-color: rgb(244, 245, 245);
 }

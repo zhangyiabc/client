@@ -2,7 +2,7 @@
   <div class="top-container">
     <div class="top">
       <el-row :gutter="30" type="flex" justify="space-around" align="middle">
-        <el-col :span="4"
+        <el-col :span="6"
           ><div class="logo">
             <router-link to="/">
               <img height="100%" src="../assets/logo.png" alt="" />
@@ -12,7 +12,7 @@
         >
         <el-col :span="2"
           ><div>
-            <router-link to="/home">首页</router-link>
+            <router-link to="/">首页</router-link>
           </div></el-col
         >
         <el-col :span="8"
