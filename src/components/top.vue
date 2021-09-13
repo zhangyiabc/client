@@ -6,7 +6,7 @@
           ><div class="logo">
             <router-link to="/">
               <img height="100%" src="../assets/logo.png" alt="" />
-              博客系统
+              <span>博客系统</span>
             </router-link>
           </div></el-col
         >
@@ -29,16 +29,39 @@
         <el-col :span="2"
           ><div>
             <router-link to="/home">
-              <el-button class="edit" type="primary" size="small" icon="el-icon-edit">写文章</el-button>
+              <el-button
+                class="edit"
+                type="primary"
+                size="small"
+                icon="el-icon-edit"
+                >写文章</el-button
+              >
             </router-link>
           </div></el-col
         >
         <el-col :span="4"
           ><div>
-            <router-link to="/login"> 登录  
-            <i class="el-icon-user"></i>
-             </router-link> |
-             <router-link to="/register">注册</router-link>
+            <router-link
+              :to="{
+                name: 'Login',
+                params: {
+                  type: 'login',
+                },
+              }"
+            >
+              登录
+              <i class="el-icon-user"></i>
+            </router-link>
+            |
+            <router-link
+              :to="{
+                name: 'Login',
+                params: {
+                  type: 'register',
+                },
+              }"
+              >注册</router-link
+            >
           </div></el-col
         >
       </el-row>
@@ -104,6 +127,10 @@ export default {
         margin-right: 10px;
       }
     }
+    span {
+      font-family: "华文楷体";
+      font-weight: 700;
+    }
   }
 }
 
@@ -113,8 +140,6 @@ export default {
     border-radius: 0;
   }
 }
-
-
 
 .grid-content {
   border-radius: 4px;

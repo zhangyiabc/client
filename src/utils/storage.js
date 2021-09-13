@@ -1,6 +1,9 @@
 // 操作localStorage的方法
 export const getItem = name => {
   const data = window.localStorage.getItem(name)
+  if(data == "undefined"){
+    return null
+  }
   try {
     return JSON.parse(data)
   } catch (err) {
