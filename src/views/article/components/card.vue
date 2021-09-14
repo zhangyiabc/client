@@ -3,28 +3,35 @@
     <div class="line"></div>
     <div class="card-top">
       <span class="name">
-        <el-link>{{ articleInfo.Admin.author }}
-          </el-link> </span> | <span> <i> {{ articleInfo.time }}</i> 天前</span> |
-      <span class="tag">  <el-link>{{ articleInfo.Label.tag }} </el-link></span>
+        <el-link type="info">{{ articleInfo.Admin.author }} </el-link>
+      </span>
+      |
+      <span>
+        <i> {{ articleInfo.time }}</i> 天前</span
+      >
+      |
+      <span class="tag">
+        <el-link type="info">{{ articleInfo.Label.tag }} </el-link></span
+      >
     </div>
     <div class="card-main">
-      <div class="main-left" >
-        <h3 class="title">{{articleInfo.title}}</h3>
+      <div class="main-left">
+        <h3 class="title">{{ articleInfo.title }}</h3>
         <div class="left-main">
-          {{articleInfo.content}}
+          {{ articleInfo.content }}
         </div>
       </div>
       <div class="main-right">
-        <img
-          v-if="articleInfo.cover"
-          :src="articleInfo.cover"
-          alt=""
-        />
+        <img v-if="articleInfo.cover" :src="articleInfo.cover" alt="" />
       </div>
     </div>
     <div class="card-bottom">
-      <span class="view"><i class="el-icon-view"></i>{{ articleInfo.viewcount }}</span>
-      <span class="nice"><i class="iconfont  icon-dianzan"></i>{{ articleInfo.nicecount }}</span>
+      <span class="view"
+        ><i class="el-icon-view"></i>{{ articleInfo.viewcount }}</span
+      >
+      <span class="nice" @click="handleNice"
+        ><i class="iconfont icon-dianzan"></i>{{ articleInfo.nicecount }}</span
+      >
       <span class="comment"
         ><i class="el-icon-chat-line-round"></i>{{ 1 }}</span
       >
@@ -45,10 +52,15 @@ export default {
   },
   data() {
     return {
-      author:"张益达",
+      author: "张益达",
       time: "三天前",
       label: "前端",
     };
+  },
+  methods: {
+    handleNice() {
+      console.log("点击了点赞");
+    },
   },
 };
 </script>
@@ -61,36 +73,40 @@ export default {
   width: 100%;
   height: 200px;
   box-sizing: border-box;
-  &:hover{
-    background: rgba(0,206,201,0.02);
+  &:hover {
+    background: rgba(0, 206, 201, 0.02);
   }
   .line {
     width: 98%;
     height: 1px;
     background-color: transparent;
-    background-image: linear-gradient(to right, transparent, #667,transparent);
+    background-image: linear-gradient(to right, transparent, #667, transparent);
     margin-bottom: 10px;
   }
   .card-top {
     width: 100%;
-    span{
+    span {
       margin-right: 2px;
-      i{
-        
+      i {
         font-size: 20px;
         color: #74b9ff;
         font-weight: 700;
       }
-      &.name .el-link{
+      &.name .el-link {
         font-family: "字体视界-小南同学";
         font-weight: 700;
         color: #665;
         // color: #b71540;
       }
-      &.tag .el-link{
+      &.tag {
+        background-color: rgb(190, 216, 247);
+        padding: 5px;
+        border-radius: 5px;
+      }
+      &.tag .el-link {
         font-family: "华文宋体";
         font-weight: 700;
-        color: #999;
+        color: #fff;
       }
     }
   }
@@ -103,8 +119,8 @@ export default {
     // background-color: #667;
     .main-left {
       width: 70%;
-      .title{
-        &:hover{
+      .title {
+        &:hover {
           color: #74b9ff;
         }
       }
@@ -123,7 +139,7 @@ export default {
   .card-bottom {
     span {
       margin-right: 10px;
-      i{
+      i {
         margin-right: 5px;
       }
     }

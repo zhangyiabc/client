@@ -26,21 +26,22 @@
             </el-input>
           </div>
         </el-col>
-        <el-col :span="2"
+        <el-col :span="4"
           ><div>
-            <router-link to="/home">
+            
               <el-button
                 class="edit"
                 type="primary"
                 size="small"
                 icon="el-icon-edit"
+                @click="handleWrite"
                 >写文章</el-button
               >
-            </router-link>
+            
           </div></el-col
         >
-        <el-col :span="4"
-          ><div>
+        <el-col :span="4">
+          <div v-if="!isLogined">
             <router-link
               :to="{
                 name: 'Login',
@@ -60,10 +61,13 @@
                   type: 'register',
                 },
               }"
-              >注册</router-link
-            >
-          </div></el-col
-        >
+              >注册
+            </router-link>
+          </div>
+          <div class="user" v-if="isLogined">
+            <img src="" alt="" />
+          </div>
+        </el-col>
       </el-row>
     </div>
     <div class="line"></div>
@@ -71,15 +75,26 @@
 </template>
 
 <script>
+import store from "@/store";
 export default {
   data() {
     return {
       input3: "",
     };
   },
+  computed: {
+    isLogined() {
+      return store.getters.AdminId;
+    },
+  },
   methods: {
     handleSearch() {
       console.log("发生了点击");
+    },
+    handleWrite() {
+      this.$router.push({
+        name:"WriteArticle"
+      })
     },
   },
 };

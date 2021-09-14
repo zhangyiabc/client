@@ -132,12 +132,12 @@
 import { register } from "@/apis/user.js";
 import store from "@/store";
 export default {
-  created(){
-    const type = this.$route.params.type || "login"
-    if(type == "login"){
-      this.isLogin = true
-    }else{
-      this.isLogin = false
+  created() {
+    const type = this.$route.params.type || "login";
+    if (type == "login") {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
     }
   },
   data() {
@@ -259,18 +259,23 @@ export default {
         if (valid) {
           if (type === "login-form") {
             this.isLoginLoading = true;
-            store.dispatch("user/login", this.loginForm).then((res) => {
-              this.isLoginLoading = false;
-              if (+res.code == 200) {
-                this.$message({
-                  type: "success",
-                  message: "登录成功",
-                });
-                this.$router.push({
-                  path: "/",
-                });
-              }
-            });
+            store
+              .dispatch("user/login", this.loginForm)
+              .then((res) => {
+                this.isLoginLoading = false;
+                if (+res.code == 200) {
+                  this.$message({
+                    type: "success",
+                    message: "登录成功",
+                  });
+                  this.$router.push({
+                    path: "/",
+                  });
+                }
+              })
+              .catch(() => {
+                this.isLoginLoading = true;
+              });
           } else if (type === "register-form") {
             // 提交登录信息
             // 跳转到登录页面

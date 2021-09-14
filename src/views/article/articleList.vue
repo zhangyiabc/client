@@ -12,8 +12,6 @@
           <template v-for="item of articleData ">
             <Card :key="item.id" :articleInfo="item"/>
           </template>
-
-
         </div>
       </template>
     </Layout>
@@ -25,6 +23,7 @@ import Card from "./components/card.vue"
 import { getArticle } from "@/apis/book";
 import Top from "@/components/top";
 import Layout from "@/layout";
+import store from "@/store"
 export default {
   name: "ArticleList",
   components: {
@@ -34,6 +33,9 @@ export default {
   },
   created(){
     this.getArticleData()
+  },
+  mounted(){
+    store.dispatch("user/whoAmI")
   },
   data() {
     return {

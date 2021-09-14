@@ -1,6 +1,6 @@
 // 存储用户信息的 仓库
 import { getItem, setItem, removeItem } from "@/utils/storage";
-import { login } from "@/apis/user";
+import { login,whoami } from "@/apis/user";
 const TOKEN = "token";
 
 export default {
@@ -12,7 +12,7 @@ export default {
   mutations: {
     setUserInfo(state, data) {
       state.userInfo = data;
-      setItem("user",data)
+      setItem("user", data)
     },
     // 设置token
     setToken(state, data) {
@@ -29,9 +29,9 @@ export default {
     // 登录
     async login({ commit }, data) {
       // commit()
-      console.log(data)
+      // console.log(data)
       const result = await login(data)
-      commit("setUserInfo",result.data)
+      commit("setUserInfo", result.data)
       // 调用登录的接口
       // 将用户信息写入仓库
       // 返回用户信息
@@ -44,5 +44,12 @@ export default {
     },
     // whoami
     // 利用token换用户信息
+    async whoAmI({ commit }) {
+      const userInfo = await whoami()
+      console.log(userInfo)
+      if(typeof userInfo.data == "object"){
+        commit("setUserInfo",userInfo.data)
+      }
+    }
   },
 };
