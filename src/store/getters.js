@@ -1,7 +1,8 @@
 const getters = {
   token: state => state.user.authorization,
-  avatar: state => state.user.avatar,
+  avatar: state => state.user.userInfo.UserInfo.avatar,
   author: state => state.user.userInfo.author,
+  userInfo:state => state.user.userInfo.UserInfo,
   AdminId: state => state.user.userInfo.id,
   username: state => state.user.userInfo.username,
   // getDatasFn: state => state.statusDatas,

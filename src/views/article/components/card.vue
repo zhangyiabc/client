@@ -2,7 +2,7 @@
   <div class="card-container">
     <div class="line"></div>
     <div class="card-top">
-      <span class="name">
+      <span class="name" @click="authorClick">
         <el-link type="info">{{ articleInfo.Admin.author }} </el-link>
       </span>
       |
@@ -10,18 +10,18 @@
         <i> {{ articleInfo.time }}</i> 天前</span
       >
       |
-      <span class="tag">
+      <span class="tag" @click="labelClick">
         <el-link type="info">{{ articleInfo.Label.tag }} </el-link></span
       >
     </div>
     <div class="card-main">
       <div class="main-left">
-        <h3 class="title">{{ articleInfo.title }}</h3>
-        <div class="left-main">
+        <h3 class="title" @click="handleIntoDetail">{{ articleInfo.title }}</h3>
+        <div class="left-main" @click="handleIntoDetail">
           {{ articleInfo.content }}
         </div>
       </div>
-      <div class="main-right">
+      <div class="main-right" @click="handleIntoDetail">
         <img v-if="articleInfo.cover" :src="articleInfo.cover" alt="" />
       </div>
     </div>
@@ -60,13 +60,29 @@ export default {
   methods: {
     handleNice() {
       console.log("点击了点赞");
+      this.$emit("handleNice",this.articleInfo.id)
     },
+    authorClick(){
+      console.log("点击了用户名")
+      this.$emit("authorClick",this.articleInfo.AdminId)
+    },
+
+    labelClick(){
+      console.log("点击了文章标签")
+      this.$emit("labelClick",this.articleInfo.LabelId)
+
+    },
+
+    handleIntoDetail(){
+      console.log("点击进入文章详情")
+      this.$emit("handleIntoDetail",this.articleInfo.id)
+    }
   },
 };
 </script>
 
 <style lang="less" scoped>
-@import url("https://at.alicdn.com/t/font_2804341_xbk1e73boan.css");
+@import url("https://at.alicdn.com/t/font_2804341_sd009a4l2d8.css");
 
 .card-container {
   padding: 20px;

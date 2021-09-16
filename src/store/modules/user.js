@@ -1,12 +1,13 @@
 // 存储用户信息的 仓库
 import { getItem, setItem, removeItem } from "@/utils/storage";
 import { login,whoami } from "@/apis/user";
+import Cookies from "js-cookie";
 const TOKEN = "token";
 
 export default {
   namespaced: true,
   state: {
-    authorization: getItem(TOKEN),
+    authorization: getItem(TOKEN) || Cookies.get("token"),
     userInfo: {},
   },
   mutations: {
@@ -46,8 +47,8 @@ export default {
     // 利用token换用户信息
     async whoAmI({ commit }) {
       const userInfo = await whoami()
-      console.log(userInfo)
       if(typeof userInfo.data == "object"){
+        sessionStorage.setItem("AdminId",userInfo.data.id)
         commit("setUserInfo",userInfo.data)
       }
     }

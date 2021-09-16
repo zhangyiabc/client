@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // import Home from "../views/home/index.vue";
 import book from "./modules/book";
+import user from "./modules/user"
 Vue.use(VueRouter);
 
 const routes = [
@@ -11,11 +12,8 @@ const routes = [
     name: "Home",
     // component: Home,
   },
-  // {
-  //   path: "/home",
-  //   redirect: "/",
-  // },
   ...book,
+  ...user,
   {
     path: "/login",
     name: "Login",

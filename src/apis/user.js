@@ -33,9 +33,18 @@ const upload = (data) => {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
-    data:data
+    data: data
 
   })
 }
 
-export { login, register, whoami, upload};
+// 用户相关的路由
+const getUserInfo = (id) => {
+  return request({
+    usr: "api/api/admin/user/" + id,
+    method: "GET"
+  })
+}
+
+
+export { login, register, whoami, upload, getUserInfo };

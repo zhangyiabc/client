@@ -2,7 +2,7 @@
   <div class="top-container">
     <div class="top">
       <el-row :gutter="30" type="flex" justify="space-around" align="middle">
-        <el-col :span="6"
+        <el-col :span="4"
           ><div class="logo">
             <router-link to="/">
               <img height="100%" src="../assets/logo.png" alt="" />
@@ -28,19 +28,17 @@
         </el-col>
         <el-col :span="4"
           ><div>
-            
-              <el-button
-                class="edit"
-                type="primary"
-                size="small"
-                icon="el-icon-edit"
-                @click="handleWrite"
-                >写文章</el-button
-              >
-            
+            <el-button
+              class="edit"
+              type="primary"
+              size="small"
+              icon="el-icon-edit"
+              @click="handleWrite"
+              >写文章</el-button
+            >
           </div></el-col
         >
-        <el-col :span="4">
+        <el-col :span="2">
           <div v-if="!isLogined">
             <router-link
               :to="{
@@ -64,9 +62,14 @@
               >注册
             </router-link>
           </div>
-          <div class="user" v-if="isLogined">
-            <img src="" alt="" />
-          </div>
+          <el-avatar
+            class="avatar"
+            v-if="isLogined"
+            shape="circle"
+            :size="40"
+            :src="avatar"
+            @click.native="avatarClick"
+          ></el-avatar>
         </el-col>
       </el-row>
     </div>
@@ -75,6 +78,7 @@
 </template>
 
 <script>
+// import {mapState} from "vuex"
 import store from "@/store";
 export default {
   data() {
@@ -86,6 +90,10 @@ export default {
     isLogined() {
       return store.getters.AdminId;
     },
+    avatar() {
+      return store.getters.avatar;
+    },
+    // ...mapState(['avatar'])
   },
   methods: {
     handleSearch() {
@@ -93,9 +101,16 @@ export default {
     },
     handleWrite() {
       this.$router.push({
-        name:"WriteArticle"
-      })
+        name: "WriteArticle",
+      });
     },
+    avatarClick(){
+      // 1.写入sessionStorage adminId
+      // 2.跳转到个人中心页面
+      // 3.加载个人信息 
+      console.log("点击了头像")
+
+    }
   },
 };
 </script>
@@ -105,6 +120,7 @@ export default {
   box-sizing: border-box;
   padding: 0 150px;
   height: 50px;
+  // line-height: 50px;
   background-color: #fff;
   a {
     color: inherit;
@@ -146,7 +162,12 @@ export default {
       font-family: "华文楷体";
       font-weight: 700;
     }
+    
   }
+  .avatar{
+      cursor: pointer;
+      
+    }
 }
 
 .search {

@@ -153,8 +153,9 @@ export default {
       this.content = this.editor.txt.html()
       // 开启加载动画
       // 调用接口
-      // 跳转页面
       // 关闭加载动画
+      // 跳转页面
+      
     },
     getAllLabelFun() {
       getAddLabel().then(res => {

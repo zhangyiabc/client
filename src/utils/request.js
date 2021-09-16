@@ -9,6 +9,13 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // 此时需要加入token
+
+    if (!config.headers.authorization) {
+      // console.log(config.headers.authorization)
+      config.headers.authorization = store.getters.token
+      // console.log(store.getters.token)
+    }
+    // console.log(config)
     return config;
   },
   (err) => {
